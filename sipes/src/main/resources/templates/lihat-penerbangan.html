@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Detail Penerbangan </title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container" align="center" style="padding-top: 30px">
+    <h3 style="padding-bottom: 20px">Detail Penerbangan</h3>
+    <table class="table">
+        <tr>
+            <th scope="col">Kode Penerbangan</th>
+            <td th:text="${penerbangan.nomor_penerbangan}"></td>
+        </tr>
+        <tr>
+            <th scope="col">Kode Bandara Asal</th>
+            <td th:text="${penerbangan.kode_bandara_asal}"></td>
+        </tr>
+        <tr>
+            <th scope="col">Kode Bandara Tujuan</th>
+            <td th:text="${penerbangan.kode_bandara_tujuan}"></td>
+        </tr>
+        <tr>
+            <th scope="col">Waktu Berangkat</th>
+            <td th:text="${penerbangan.waktu_berangkat}"></td>
+        </tr>
+<!--        <tr>-->
+<!--            <th scope="col">Tanggal Dibuat</th>-->
+<!--            <td th:text="${pesawat.tanggal_dibuat}"></td>-->
+<!--        </tr>-->
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+    </table>
+    <a th:href="@{/penerbangan}">Kembali</a>
+</div>
+</body>
+</html>

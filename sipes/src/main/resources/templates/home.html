@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymelaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<div style="text-align: center; margin-top: 300px">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+                    <div type="button" class="btn btn-info" disabled style="text-align: center; width: 500px;height: 120px;border-radius: 5px;">
+                        <div class="align-middle" >
+                            <h2 class="align-middle" style="text-align: center;padding: 10px" >Selamat Datang di SIPESAWAT!!</h2>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-sm">
+            </div>
+        </div>
+    <div class="row mt-5" >
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col">
+            <a th:href="@{/pesawat}" style="width: 120px" type="button" class="btn btn-info">Pesawat</a></div>
+        <div class="col">
+            <a th:href="@{/penerbangan}" style="width: 120px" type="button" class="btn btn-info">Penerbangan</a></div>
+        <div class="col">
+            <a th:href="@{/cari}" style="width: 120px" type="button" class="btn btn-info">Cari</a></div>
+        <div class="col">
+            <a th:href="@{/filter}" style="width: 120px" type="button" class="btn btn-info">Filter</a></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Pesawat</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container" style="margin-top: 20px">
+    <h2 style="text-align:center">Daftar Pesawat</h2>
+    <br>
+    <form th:action="@{/pesawat/tambah}">
+        <button class="btn btn-info" style="float: left; margin-bottom: 20px">
+            + Tambah Pesawat
+        </button>
+    </form>
+    <table class="table">
+        <thead>
+        <tr style="background-color: #17a2b8;color: white">
+            <th scope="col">No</th>
+            <th scope="col">Nomor Seri</th>
+            <th scope="col">Tipe Pesawat</th>
+            <th scope="col">Jenis Maskapai</th>
+            <th scope="col">Maskapai</th>
+            <th></th>
+            <th scope="col">Aksi</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pesawat, iterationStatus : *{listPesawat}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${pesawat.nomor_seri}"></td>
+            <td th:text="${pesawat.tipe.nama_tipe}"></td>
+            <td th:text="${pesawat.jenis_pesawat}"></td>
+            <td th:text="${pesawat.maskapai}"></td>
+            <td>
+                <button class="btn btn-info">
+
+                    <a th:href="@{/pesawat/view(id=${pesawat.id})}" style="color: white">Lihat</a>
+                </button>
+            </td>
+            <td>
+
+                <form th:action="@{/pesawat/ubah/}+ ${pesawat.id}" method="GET">
+                    <button class="btn btn-warning">Ubah</button>
+                </form>
+            </td>
+            <td>
+
+                <form th:action="@{/} " method="GET">
+                    <button class="btn btn-danger">Hapus</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+
+</div>
+</body>
+</html>

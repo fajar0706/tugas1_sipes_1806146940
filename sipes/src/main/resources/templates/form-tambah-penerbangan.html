@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Penerbangan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container" style="padding-top: 30px">
+    <h3> Form Tambah Penerbangan</h3>
+    <form th:action="@{/penerbangan/tambah}" th:object="${penerbangan}" method="POST">
+        <div class="form-group row">
+            <label for="nomor_penerbangan" class="col-sm-2 col-form-label">Kode Penerbangan</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="nomor_penerbangan" th:field="${penerbangan.nomor_penerbangan}" placeholder="Masukkan Kode Penerbangan">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="kode_bandara_asal" class="col-sm-2 col-form-label">Kode Bandara Asal</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="kode_bandara_asal" th:field="${penerbangan.kode_bandara_asal}" placeholder="Masukkan kode bandara asal">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="kode_bandara_tujuan" class="col-sm-2 col-form-label">Kode Bandara Tujuan</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id ="kode_bandara_tujuan" th:field="${penerbangan.kode_bandara_tujuan}" placeholder="Masukkan kode bandara tujuan">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="waktu_berangkat" class="col-sm-2 col-form-label">Waktu Berangkat</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="waktu_berangkat" th:field="${penerbangan.waktu_berangkat}" >
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-outline-primary">Batal</button>
+    </form>
+</div>
+</body>
+</html>
