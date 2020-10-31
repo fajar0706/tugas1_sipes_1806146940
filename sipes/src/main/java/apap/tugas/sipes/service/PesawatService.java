@@ -10,4 +10,5 @@ public interface PesawatService {
     String generateNomorSeri(PesawatModel pesawat);
     Optional<PesawatModel> getPesawatById(Long id);
     PesawatModel changePesawat(PesawatModel pesawat);
+    List<PesawatModel> findAllPesawatTua(List<PesawatModel> listPesawat);
 }

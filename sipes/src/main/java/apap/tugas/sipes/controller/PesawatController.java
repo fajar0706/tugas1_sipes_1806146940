@@ -116,4 +116,11 @@ public class PesawatController {
         model.addAttribute("pesawat", newPesawatData);
         return "ubah-data-pesawat";
     }
+    @RequestMapping(path = "/cari/pesawat/pesawat-tua",method = RequestMethod.GET)
+    public String pesawatTua(Model model){
+        List<PesawatModel> listPesawat = pesawatService.findAllPesawat();
+        List<PesawatModel> listPesawatTua = pesawatService.findAllPesawatTua(listPesawat);
+        model.addAttribute("listPesawatTua", listPesawatTua);
+        return "daftar-pesawat-tua";
+    }
 }

@@ -38,7 +38,7 @@ public class PenerbanganModel implements  Serializable {
     @Column(name="nomor_penerbangan", nullable = false, unique = true)
     private String nomor_penerbangan;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "pesawatId", referencedColumnName = "id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore

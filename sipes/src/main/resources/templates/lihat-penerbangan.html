@@ -29,16 +29,18 @@
             <th scope="col">Waktu Berangkat</th>
             <td th:text="${penerbangan.waktu_berangkat}"></td>
         </tr>
-<!--        <tr>-->
-<!--            <th scope="col">Tanggal Dibuat</th>-->
+        <tr>
+            <th scope="col">Nomor Seri Pesawat</th>
 <!--            <td th:text="${pesawat.tanggal_dibuat}"></td>-->
-<!--        </tr>-->
+            <td>Belum Assign Pesawat</td>
+
+        </tr>
         <tr>
             <th></th>
             <td></td>
         </tr>
     </table>
-    <a th:href="@{/penerbangan}">Kembali</a>
+    <a th:href="@{/penerbangan}">Kembali ke Daftar Penerbangan</a>
 </div>
 </body>
 </html>

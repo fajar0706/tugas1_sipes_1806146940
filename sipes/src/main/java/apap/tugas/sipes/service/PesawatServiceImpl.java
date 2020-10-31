@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 @Transactional
@@ -99,5 +97,25 @@ public class PesawatServiceImpl implements PesawatService{
             return null;
         }
     }
+
+    @Override
+    public List<PesawatModel> findAllPesawatTua(List<PesawatModel> listPesawat) {
+        List<PesawatModel> pesawatTua = new ArrayList<>();
+        for (PesawatModel pesawat: listPesawat) {
+            Date date = pesawat.getTanggal_dibuat();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy");
+            String year = dateFormat.format(date);
+            int tahunBuat = Integer.parseInt(year);
+            String[] currYear = LocalDate.now().toString().split("-");
+            String currentYear = currYear[0];
+            int tahunSekarang = Integer.parseInt(currentYear);
+            int umurPesawat = tahunSekarang  - tahunBuat;
+            if(umurPesawat > 10){
+                pesawatTua.add(pesawat);
+            }
+        }
+        return pesawatTua;
+    }
+
 
 }
