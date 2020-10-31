@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.constraints.Pattern;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,5 +124,33 @@ public class PesawatController {
         List<PesawatModel> listPesawatTua = pesawatService.findAllPesawatTua(listPesawat);
         model.addAttribute("listPesawatTua", listPesawatTua);
         return "daftar-pesawat-tua";
+    }
+    @RequestMapping(path = "/pesawat/{id}/tambah-penerbangan", method = RequestMethod.GET)
+    public String tambahPenerbangan(
+            @PathVariable Long id,Model model){
+        PenerbanganModel newPenerbangan = new PenerbanganModel();
+        PesawatModel pesawatId = pesawatService.getPesawatById(id).get();
+        List<PenerbanganModel> listPenerbangan = penerbanganService.findAllPenerbangan();
+        model.addAttribute("penerbanganList", listPenerbangan);
+        model.addAttribute("pesawat",pesawatId);
+        model.addAttribute("penerbangan",newPenerbangan);
+        return  "lihat-pesawat-penerbangan";
+    }
+    @RequestMapping(value = "/pesawat/{id}/tambah-penerbangan",method = RequestMethod.POST)
+    public String viewPenerbanganPesawat(
+            @PathVariable Long id,
+            @ModelAttribute PenerbanganModel penerbangan,
+            Model model){
+        PenerbanganModel penerbanganId = penerbanganService.getPenerbanganById(penerbangan.getId_penerbangan()).get();
+        System.out.println(penerbangan.getId_penerbangan());
+        penerbanganId.setPesawatModel(pesawatService.getPesawatById(id).get());
+        List<PenerbanganModel> listPenerbangan = penerbanganService.findAllPenerbangan();
+        PesawatModel pesawatId = pesawatService.getPesawatById(id).get();
+        model.addAttribute("penerbanganList", listPenerbangan);
+        model.addAttribute("pesawat",pesawatId);
+        penerbangan = new PenerbanganModel();
+        model.addAttribute("penerbangan",penerbangan);
+
+        return "lihat-pesawat-penerbangan";
     }
 }

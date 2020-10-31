@@ -86,4 +86,5 @@ public class PenerbanganController {
         model.addAttribute("penerbangan", penerbangan);
         return "delete-data-penerbangan";
     }
+
 }

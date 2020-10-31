@@ -38,22 +38,22 @@
             <td th:text="${pesawat.jenis_pesawat}"></td>
             <td th:text="${pesawat.maskapai}"></td>
             <td>
-                <button class="btn btn-info">
-
-                    <a th:href="@{/pesawat/view(id=${pesawat.id})}" style="color: white">Lihat</a>
-                </button>
+                <form th:action="@{/pesawat/}+ ${pesawat.id} + '/tambah-penerbangan'" method="GET">
+                    <button class="btn btn-primary">Lihat</button>
+                </form>
             </td>
             <td>
-
                 <form th:action="@{/pesawat/ubah/}+ ${pesawat.id}" method="GET">
                     <button class="btn btn-warning">Ubah</button>
                 </form>
             </td>
             <td>
-
-                <form th:action="@{/} " method="GET">
+                <form th:action="@{/pesawat}" method="GET">
                     <button class="btn btn-danger">Hapus</button>
                 </form>
+<!--                <button class="btn btn-info">-->
+<!--                    <a th:href="@{/pesawat/tambah-penerbangan(id=${pesawat.id})}" style="color: white">Hapus</a>-->
+<!--                </button>-->
             </td>
         </tr>
         </tbody>

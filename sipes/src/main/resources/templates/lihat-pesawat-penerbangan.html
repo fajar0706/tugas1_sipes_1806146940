@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Detail Pesawat </title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container" align="center" style="padding-top: 30px">
+    <h3 style="padding-bottom: 20px">Detail Pesawat</h3>
+    <table class="table">
+        <tr>
+            <th scope="col">Nomor Seri Pesawat</th>
+            <td th:text="${pesawat.nomor_seri}"></td>
+        </tr>
+        <tr>
+            <th scope="col">Jenis Pesawat</th>
+            <td th:text="${pesawat.jenis_pesawat}"></td>
+        </tr>
+        <tr>
+            <th scope="col">Nama Tipe Pesawat</th>
+            <td th:text="${pesawat.tipe.nama_tipe}"></td>
+        </tr>
+        <tr>
+            <th scope="col">Maskapai</th>
+            <td th:text="${pesawat.maskapai}"></td>
+        </tr>
+        <tr>
+            <th scope="col">Tempat Dibuat</th>
+            <td th:text="${pesawat.tempat_dibuat}"></td>
+        </tr>
+        <tr>
+            <th scope="col">Tanggal Dibuat</th>
+            <td th:text="${pesawat.tanggal_dibuat}"></td>
+        </tr>
+
+        <tr>
+            <th></th>
+            <td></td>
+            <!--                <span th:if="${pesawat.getListTeknisi().size()==0}">-->
+            <!--                <td>-</td>-->
+            <!--                </span>-->
+            <!--                <span th:if="${pesawat.getListTeknisi().size()!=0}">-->
+            <!--                <td th:each="pesawat, iterationStatus : *{pesawat.getListTeknisi()}" th:text="${pesawat.list_teknisi.nama_teknisi}"></td>-->
+            <!--            </span>-->
+        </tr>
+    </table>
+    <h5 style="padding-bottom: 20px">Daftar Teknisi Pesawat</h5>
+    <div  align="center" style="text-align: center; margin-left: 200px;margin-right: 200px">
+        <table class="table table-bordered" >
+            <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Nomor Telepon</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="teknisi, iterationStatus : *{pesawat.listTeknisi}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${teknisi.nama_teknisi}"></td>
+                <td th:text="${teknisi.nomor_telepon}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        </table>
+        <h5 style="padding-bottom: 20px">Daftar Penerbangan</h5>
+        <div  align="center" style="text-align: center;">
+            <form th:action="@{/pesawat/}+${pesawat.id}+'/tambah-penerbangan'" th:object="${penerbangan}" method="POST">
+                <div class="form-group row" style="justify-content: center">
+                    <div class="col-sm-3">
+                        <select class="form-control form-control-lg" th:field="*{id_penerbangan}">
+                            <option th:value="null" selected style="width: 100px">Nomor Penerbangan</option>
+                            <option th:each="penerbangan, iterationStatus : ${penerbanganList}"
+                                    th:value="${penerbangan.id_penerbangan}"
+                                    th:text="${penerbangan.nomor_penerbangan}"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
+            <table class="table table-bordered" >
+                <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nomor Penerbangan</th>
+                    <th scope="col">Bandara Asal</th>
+                    <th scope="col">Bandara Tujuan</th>
+                    <th scope="col">Waktu Berangkat</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="penerbangan, iterationStatus : *{pesawat.listPenerbangan}">
+                    <td th:text="${iterationStatus.count}"></td>
+                    <td th:text="${penerbangan.nomor_penerbangan}"></td>
+                    <td th:text="${penerbangan.kode_bandara_asal}"></td>
+                    <td th:text="${penerbangan.kode_bandara_tujuan}"></td>
+                    <td th:text="${penerbangan.waktu_berangkat}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+    </div>
+    <a th:href="@{/pesawat}">Kembali ke Daftar Pesawat</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+</div>
+</body>
+</html>

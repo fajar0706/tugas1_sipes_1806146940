@@ -11,4 +11,5 @@ public interface PesawatService {
     Optional<PesawatModel> getPesawatById(Long id);
     PesawatModel changePesawat(PesawatModel pesawat);
     List<PesawatModel> findAllPesawatTua(List<PesawatModel> listPesawat);
+    void assignPenerbangan(Long idPesawat, Long idPenerbangan);
 }

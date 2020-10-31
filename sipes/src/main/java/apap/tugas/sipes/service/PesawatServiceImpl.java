@@ -1,6 +1,8 @@
 package apap.tugas.sipes.service;
 
+import apap.tugas.sipes.model.PenerbanganModel;
 import apap.tugas.sipes.model.PesawatModel;
+import apap.tugas.sipes.repository.PenerbanganDb;
 import apap.tugas.sipes.repository.PesawatDb;
 import apap.tugas.sipes.repository.TeknisiDb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class PesawatServiceImpl implements PesawatService{
 
     @Autowired
     TeknisiDb teknisiDb;
+
+    @Autowired
+    PenerbanganDb penerbanganDb;
 
     @Override
     public List<PesawatModel> findAllPesawat() {
@@ -115,6 +120,14 @@ public class PesawatServiceImpl implements PesawatService{
             }
         }
         return pesawatTua;
+    }
+
+    @Override
+    public void assignPenerbangan(Long idPesawat, Long idPenerbangan) {
+        PesawatModel pesawat = pesawatDb.findById(idPesawat).get();
+        PenerbanganModel penerbangan = penerbanganDb.findById(idPenerbangan).get();
+        pesawatDb.save(pesawat);
+        penerbanganDb.save(penerbangan);
     }
 
 
